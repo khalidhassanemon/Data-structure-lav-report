@@ -1,0 +1,350 @@
+ Problem 1:
+
+#include<iostream>
+using namespace std;
+class b{
+public:
+    int aa;
+    string bb;
+    b(int x,string y){
+        aa=x;
+        bb=y;
+        cout<<"In B Class"<<endl;
+        cout<<aa<<" "<<bb<<endl;
+    }
+};
+class a: public b{
+public:
+    int c;
+    string d;
+    a(int m,string n,int x, string y):b(x,y){
+        c=m;
+        d=n;
+        cout<<"In A Class"<<endl;
+        cout<<c<<" "<<d<<endl;
+    }
+};
+int main(){
+    a ob(2,"A",4,"d");
+    return 0;
+}
+
+problem 2:
+
+#include<iostream>
+using namespace std;
+class phone{
+    public:
+     virtual void callreceive()=0;
+};
+class landline:public phone{
+public:
+    void callreceive(){
+        cout<<"Pick Receiver"<<endl;
+    }
+};
+    class mobile: public phone{
+    public:
+        void callreceive(){
+        cout<<"Press Receive Button"<<endl;
+    }
+};
+int main()
+{
+    landline ob1;
+    ob1.callreceive();
+    mobile ob2;
+    ob2.callreceive();
+    return 0;
+}
+
+problem 3:
+
+#include<iostream>
+using namespace std;
+class base{
+public:
+    void void_print(){
+        cout<<"In base class"<<endl;
+    }
+
+};
+class derived1:  public base{
+public:
+    void void_print(){
+        cout<<"In base class"<<endl;
+    }
+};
+class derived2:  public base{
+public:
+    void void_print(){
+        cout<<"In base class"<<endl;
+    }
+};
+int main()
+{
+    base ob;
+    ob.void_print();
+    derived1 ob1;
+    ob1.void_print();
+    derived2 ob2;
+    ob2.void_print();
+    return 0;
+}
+
+
+problem 4(1):
+
+#include<iostream>
+using namespace std;
+class cricket{
+public:
+    int a;
+    string b;
+    cricket(int x,string y){
+        a=x;
+        b=y;
+        cout<<"In Cricket Class"<<endl;
+    }
+};
+class football{
+public:
+    int c;
+    string d;
+    football(int m,string n){
+        c=m;
+        d=n;
+        cout<<"In footbal Class"<<endl;
+    }
+};
+class badminton:public cricket,public football{
+public:
+    int e;
+    string f;
+    badminton(int p,string q,int x,string y,int m,string n):cricket(x,y), football(m,n){
+        e=p;
+        f=q;
+        cout<<"In badminton Class"<<endl;
+    }
+};
+int main()
+{
+    badminton ob2(1,"c",2,"f",3,"b");
+    return 0;
+}
+
+
+Problem 5(1):
+
+#include<iostream>
+using namespace std;
+class info{
+public:
+    int id;
+    void getid()
+    {
+        cin>>id;
+        cout<<id<<endl;
+    }
+};
+class info1{
+public:
+    int roll;
+    void getroll()
+    {
+        cin>>roll;
+        cout<<roll<<endl;
+    }
+};
+class derive:public info,public info1{
+public:
+    void print(){
+    getid();
+    getroll();}
+};
+int main()
+{
+    derive d;
+    d.print();
+    return 0;
+}
+
+
+Problem 5(2):
+
+#include<iostream>
+using namespace std;
+class student{
+public:
+    int id;
+    string name;
+    void getdata()
+    {
+        cin>>id>>name;
+    }
+    void putdata()
+    {
+        cout<<id<<endl<<name<<endl;
+    }
+};
+class marks:public student{
+public:
+    int m1,m2,m3;
+    void getmarks()
+    {
+        cin>>m1>>m2>>m3;
+    }
+    void putmarks()
+    {
+        cout<<m1<<endl<<m2<<endl<<m3<<endl;
+    }
+};
+class result:public marks{
+public:
+    int total;
+    float ave;
+    void show(){
+    total=m1+m2+m3;
+    ave=total/3;
+    cout<<total<<endl<<ave;
+    }
+};
+int main()
+{
+    result r;
+    r.getdata();
+    r.putdata();
+    r.getmarks();
+    r.putmarks();
+    r.show();
+    return 0;
+}
+
+
+Problem 7:
+
+#include<iostream>
+using namespace std;
+class input{
+public:
+    int length,width;
+    void getdata()
+    {
+        cin>>length>>width;
+    }
+    virtual void area()=0;
+    virtual void perimeter()=0;
+};
+class square:public input{
+    public:
+    int a,p;
+    void area(){
+        a=length*width;
+        cout<<a<<endl;
+    }
+    void perimeter(){
+        p=4*length;
+        cout<<p<<endl;
+    }
+};
+class rectangle:public input{
+    public:
+    int a,p;
+    void area(){
+        a=length*width;
+        cout<<a<<endl;
+    }
+    void perimeter(){
+        p=2*(length+width);
+        cout<<p<<endl;
+    }
+};
+int main()
+{
+    square ob1;
+    ob1.getdata();
+    ob1.area();
+    ob1.perimeter();
+    rectangle ob2;
+    ob2.getdata();
+    ob2.area();
+    ob2.perimeter();
+    return 0;
+}
+
+
+Problem 8:
+
+#include<iostream>
+using namespace std;
+class example{
+public:
+    virtual void try_()=0;
+};
+class output: public example{
+    public:
+    void try_(){
+        cout<<"Written"<<endl;
+    }
+};
+int main()
+{
+    output ob;
+    ob.try_();
+    return 0;
+}
+
+
+Problem 9:
+
+#include<iostream>
+using namespace std;
+class base{
+public:
+    int x,y;
+    virtual void fun()=0;
+    base(int a)
+    {
+        x=a;
+    }
+};
+class derive:public base{
+    public:
+    derive(int b,int a):base(a)
+    {
+    y=b;
+    }
+    void fun(){
+    cout<<x<<endl<<y<<endl;}
+};
+int main()
+{
+    derive oby(1,2);
+    oby.fun();
+    return 0;
+}
+
+
+exception handling
+
+
+
+
+#include<iostream>
+using namespace std;
+int main(){
+try {
+  int age;
+  cin>>age;
+  if (age > 18) {
+    cout << "Access granted - you are old enough.";
+  } else {
+    throw (age);
+  }
+}
+catch (int myNum) {
+  cout << "Access denied - You must be at least 18 years old.\n";
+  cout << "Age is: " << myNum;
+}
+}
+

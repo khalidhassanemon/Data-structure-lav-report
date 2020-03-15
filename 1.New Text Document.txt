@@ -1,0 +1,38 @@
+#include<iostream>
+using namespace std;
+int main()
+{   int j,i,a[100],n,x,d;
+    int k=-1;
+    cout<<"Enter the value of array:";
+    cin>>x;
+    for(i=0; i<x; i++)
+    {cin>>a[i];
+    }
+    for(j=0; j<x; j++)
+    {
+        cout<<a[j]<<endl;
+    }
+    cout<<"enter your number which you want to search:";
+    cin>>n;
+    for(i=0; i<x; i++)
+    {if(a[i]==n)
+        {k=a[i];}}
+    if(k>-1)
+    cout<<"The position is="<<k<<endl;
+    if(k==-1)
+        cout<<"the position you are searching are not found"<<endl;
+    cout<<"enter your number which you want to insert:";
+    cin>>n;
+    cout<<"enter the index=";
+    cin>>d;
+    a[d]=n;
+    for(i=x+1; i>d; i--)
+    {
+        a[i]=a[i-1];
+    }
+    for(i=0; i<x; i++)
+    {
+        cout<<a[i]<<endl;
+    }
+   return 0;
+}
