@@ -1,21 +1,20 @@
 #include<bits/stdc++.h>
-#define M 100000
+#define M 1000000
 bool marked[M];
 using namespace std;
-void sieve(int n)
+
+void sieve(int n1)
 {
-    for(int i=3; i*i<n; i+=2)
+    for(int i=3; i*i<=n1; i+=2)
     {
         if(marked[i]==false)
         {
-            for(int j=i*i; j<=n; j+=i+i)
+            for(int j=i*i; j<=n1; j+=i+i)
             {
                 marked[j]=true;
             }
         }
     }
-
-
 }
 
 bool isPrime(int n)
@@ -35,10 +34,10 @@ bool isPrime(int n)
 int main()
 {
     int n,x=0;
-    vector<int>v1,v2,v3;
+    vector<int>v1;
     cin>>n;
-    bool marked[n];
-    for(int i=1; i<n; i++)
+    sieve(n);
+    for(int i=1; i<=n; i++)
     {
         if(isPrime(i)==true)
             v1.push_back(i);
