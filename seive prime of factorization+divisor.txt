@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+#define M 1000000
+typedef long long ll;
+using namespace std;
+ll marked[M];
+void sieve(ll n1)
+{
+    for(ll i=3; i*i<=n1; i+=2)
+    {
+        if(marked[i]==false)
+        {
+            for(ll j=i*i; j<=n1; j+=i+i)
+            {
+                marked[j]=true;
+            }
+        }
+    }
+}
+
+ll isPrime(ll n)
+{
+    if (n < 2)
+        return false;
+    if (n == 2)
+        return true;
+    if (n % 2 == 0)
+        return false;
+    if(marked[n]==false)
+        return true;
+    else
+        return false;
+
+}
+int main()
+{
+    ll n,i,m=1;
+    vector<ll>v;
+    cin>>n;
+    sieve(n);
+    for(i=1; i<=n; i++)
+    {
+        if(isPrime(i)==true)
+            v.push_back(i);
+    }
+     for(i=0;v[i]*v[i]<=n;i++)
+     {
+        if(n%v[i]==0){
+            ll c=0;
+            while(n%v[i]==0){
+                n/=v[i];
+                c++;
+            }
+            m*=(c+1);
+            cout<<v[i]<<"^"<<c<<" ";
+        }
+    }
+    if(n!=1)
+    {cout<<n<<"^"<<1<<endl;
+     cout<<"Number of divisor -> "<<m*2<<endl;
+    }
+    else{
+    cout<<endl;
+    cout<<"Number of divisor -> "<<m<<endl;
+    }
+    return 0;
+}
+
