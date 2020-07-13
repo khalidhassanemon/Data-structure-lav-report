@@ -54,14 +54,12 @@ int main()
             cout<<v[i]<<"^"<<c<<" ";
         }
     }
-    if(n!=1)
-    {cout<<n<<"^"<<1<<endl;
-     cout<<"Number of divisor -> "<<m*2<<endl;
-    }
-    else{
-    cout<<endl;
-    cout<<"Number of divisor -> "<<m<<endl;
-    }
+    if(n!=1) printf("%lld^1\n",n),m*=2;
+    else printf("\n");
+    printf("number of divisor -> %lld\n",m);
+
     return 0;
 }
+
+
 
