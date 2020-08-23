@@ -1,65 +1,61 @@
 #include<bits/stdc++.h>
 #define M 1000000
-typedef long long ll;
 using namespace std;
-ll marked[M];
-void sieve(ll n1)
+typedef	    long long       ll;
+typedef	    vector<ll>      vll;
+bool arr[1000001];
+vll v;
+void sieve()
 {
-    for(ll i=3; i*i<=n1; i+=2)
+    arr[0]=arr[1]=1;
+    for(ll i=2; i*i<=M; i++)
     {
-        if(marked[i]==false)
+        if(!arr[i])
         {
-            for(ll j=i*i; j<=n1; j+=i+i)
-            {
-                marked[j]=true;
-            }
+            for(ll j=i*i; j<=M; j+=i)
+                arr[j]=true;
         }
     }
-}
-
-ll isPrime(ll n)
-{
-    if (n < 2)
-        return false;
-    if (n == 2)
-        return true;
-    if (n % 2 == 0)
-        return false;
-    if(marked[n]==false)
-        return true;
-    else
-        return false;
-
+    for(ll i=0; i<=M; i++)
+    {
+        if(arr[i]==0)
+            v.push_back(i);
+    }
 }
 int main()
 {
     ll n,i,m=1;
-    vector<ll>v;
+    sieve();
     cin>>n;
-    sieve(n);
-    for(i=1; i<=n; i++)
+    for(i=0; v[i]*v[i]<=n; i++)
     {
-        if(isPrime(i)==true)
-            v.push_back(i);
-    }
-     for(i=0;v[i]*v[i]<=n;i++)
-     {
-        if(n%v[i]==0){
+        if(n%v[i]==0)
+        {
             ll c=0;
-            while(n%v[i]==0){
+            while(n%v[i]==0)
+            {
                 n/=v[i];
                 c++;
             }
-            m*=(c+1);
+            m*=(c);
             cout<<v[i]<<"^"<<c<<" ";
         }
     }
-    if(n!=1) printf("%lld^1\n",n),m*=2;
-    else printf("\n");
+    if(n!=1)
+    {
+        printf("%lld^1\n",n);
+        m*=2;
+    }
+    else
+    {
+        printf("\n");
+    }
     printf("number of divisor -> %lld\n",m);
 
     return 0;
 }
+
+
 
 
 
