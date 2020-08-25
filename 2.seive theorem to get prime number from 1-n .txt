@@ -1,53 +1,43 @@
 #include<bits/stdc++.h>
 #define M 1000000
-bool marked[M];
 using namespace std;
-
-void sieve(int n1)
+typedef long long ll;
+typedef vector<ll> vll;
+bool a[1000001];
+vll v;
+void sieve()
 {
-    for(int i=3; i*i<=n1; i+=2)
+    a[0]=a[1]=1;
+    for(ll i=2; i*i<=M; i++)
     {
-        if(marked[i]==false)
+        if(!a[i])
         {
-            for(int j=i*i; j<=n1; j+=i+i)
-            {
-                marked[j]=true;
-            }
+            for(ll j=i*i; j<=M; j+=i)
+                a[j]=1;
         }
     }
 }
-
-bool isPrime(int n)
+bool isPrime(ll n)
 {
-    if (n < 2)
-        return false;
-    if (n == 2)
-        return true;
-    if (n % 2 == 0)
-        return false;
-    if(marked[n]==false)
-        return true;
-    else
-        return false;
-
+    if(!a[n]) return 1;
+    if(a[n]) return 0;
 }
 int main()
 {
-    int n,x=0;
-    vector<int>v1;
+    ll n,i;
+    sieve();
     cin>>n;
-    sieve(n);
-    for(int i=1; i<=n; i++)
+    for(i=0; i<=n; i++)
     {
-        if(isPrime(i)==true)
-            v1.push_back(i);
+        if(isPrime(i))
+            v.push_back(i);
     }
-    x=v1.size();
-    for(int i=0; i<x; i++)
+    for(i=0; i<v.size(); i++)
     {
-        cout<<v1[i]<<" ";
+        cout<<v[i]<<" ";
+    }
 
-    }
     cout<<endl;
     return 0;
 }
+
